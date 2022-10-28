@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "request": "launch",
+      "name": "C++ Launch",
+      "type": "cppvsdbg",
+      "preLaunchTask": "build project",
+      "program": "${workspaceFolder}\\build\\Debug\\cool-opengl.exe",
+      "console": "newExternalWindow",
+      "logging": {
+        "moduleLoad": false,
+        "trace": true
+      },
+      "windows": {
+        "request": "launch",
+        "name": "Debug",
+        "type": "cppvsdbg",
+        "program": "${workspaceFolder}\\build\\Debug\\cool-opengl.exe",
+        "cwd": "${workspaceFolder}",
+      },
+      "cwd": "${workspaceFolder}",
+      "internalConsoleOptions": "openOnSessionStart"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "build project",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Configure",
+        "Cmake",
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Configure",
+      "type": "shell",
+      "command": "cmake -S . -B ./build -G \"Visual Studio 17 2022\"",
+      "options": {
+        "cwd": "${workspaceFolder}",
+      },
+    },
+    {
+      "label": "Cmake",
+      "type": "shell",
+      "command": "MSBuild.exe .\\build\\cool-opengl.sln",
+      "options": {
+        "cwd": "${workspaceFolder}",
+      },
+      "presentation": {
+        "reveal": "silent",
+        "revealProblems": "onProblem",
+        "close": true
+      }
+    },
+  ],
+  "version": "2.0.0"
+}

@@ -3,6 +3,8 @@ project(cool-opengl VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_COMPILER "clang-cl")
+set(CMAKE_GENERATOR_TOOLSET "ClangCL")
 
 find_package(OpenGL REQUIRED COMPONENTS OpenGL)
 
@@ -58,8 +60,17 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE libglew_static
 )
 
+add_custom_target(copy_resources ALL
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${PROJECT_SOURCE_DIR}/resources
+        ${PROJECT_BINARY_DIR}/resources
+        COMMENT "Copying resources into binary directory")
+
+add_dependencies(${PROJECT_NAME} copy_resources)
+
 if (MSVC)
     source_group("src" FILES ${SRC_COOL_OPENGL})
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
     set_property(TARGET ${PROJECT_NAME} PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
 endif()
+
