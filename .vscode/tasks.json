@@ -5,7 +5,6 @@
       "label": "build project",
       "dependsOrder": "sequence",
       "dependsOn": [
-        "Configure",
         "Cmake",
       ],
       "group": {
