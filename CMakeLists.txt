@@ -13,8 +13,13 @@ file(GLOB_RECURSE SRC_COOL_OPENGL
     "src/*.h"
 )
 
+file(GLOB_RECURSE SRC_EXTERNAL_STB
+    "external/stb/*.h"
+)
+
 add_executable(${PROJECT_NAME}
     ${SRC_COOL_OPENGL}
+    ${SRC_EXTERNAL_STB}
 )
 
 find_package(Git QUIET)
@@ -52,6 +57,7 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC ${OPENGL_INCLUDE_DIRS}
     PUBLIC external/glfw/include
     PUBLIC external/glew-cmake/include
+    PUBLIC external/stb
 )
 
 target_link_libraries(${PROJECT_NAME} 
@@ -70,6 +76,7 @@ add_dependencies(${PROJECT_NAME} copy_resources)
 
 if (MSVC)
     source_group("src" FILES ${SRC_COOL_OPENGL})
+    source_group("external/stb" FILES ${SRC_EXTERNAL_STB})
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
     set_property(TARGET ${PROJECT_NAME} PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
 endif()
