@@ -3,7 +3,6 @@ project(cool-opengl VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_CXX_COMPILER "clang-cl")
 set(CMAKE_GENERATOR_TOOLSET "ClangCL")
 
 find_package(OpenGL REQUIRED COMPONENTS OpenGL)
@@ -53,17 +52,23 @@ add_subdirectory(
     "${CMAKE_SOURCE_DIR}/external/glew-cmake"
 )
 
+add_subdirectory( 
+    "${CMAKE_SOURCE_DIR}/external/glm"
+)
+
 target_include_directories(${PROJECT_NAME} 
     PUBLIC ${OPENGL_INCLUDE_DIRS}
     PUBLIC external/glfw/include
     PUBLIC external/glew-cmake/include
     PUBLIC external/stb
+    PUBLIC external/glm/glm
 )
 
 target_link_libraries(${PROJECT_NAME} 
     PRIVATE ${OPENGL_LIBRARIES}
     PRIVATE glfw
     PRIVATE libglew_static
+    PRIVATE glm::glm
 )
 
 add_custom_target(copy_resources ALL
