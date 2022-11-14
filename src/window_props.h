@@ -5,8 +5,8 @@
 struct window_props
 {
   std::string title;
-  uint16_t width;
-  uint16_t height;
+  unsigned int width;
+  unsigned int height;
 
-  window_props(const std::string &title = "OpenGL Window", uint16_t width = 1280, uint16_t height = 720);
+  window_props(const std::string &title = "OpenGL Window", unsigned int width = 1280, unsigned int height = 720);
 };

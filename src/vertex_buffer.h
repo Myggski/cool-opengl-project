@@ -2,13 +2,13 @@
 
 class vertex_buffer
 {
-private:
-  unsigned int renderer_id;
-
 public:
   vertex_buffer(const void *data, unsigned int size);
   ~vertex_buffer();
 
   void bind() const;
   void unbind() const;
+
+private:
+  unsigned int renderer_id;
 };

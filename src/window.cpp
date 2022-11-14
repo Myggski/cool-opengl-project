@@ -38,6 +38,7 @@ void window::init(const window_props &props)
   glfwSetFramebufferSizeCallback(glfw_window, window_resize_callback);
   glfwSetCursorPosCallback(glfw_window, mouse_position_callback);
   glEnable(GL_DEPTH_TEST);
+  glewInit();
 }
 
 void window::shut_down()
@@ -62,12 +63,12 @@ bool window::is_v_sync() const
   return data.v_sync;
 }
 
-bool window::is_key_pressed(uint16_t key_code)
+bool window::is_key_pressed(unsigned int key_code)
 {
   return glfwGetKey(glfw_window, key_code) == GLFW_PRESS;
 }
 
-bool window::is_key_released(uint16_t key_code)
+bool window::is_key_released(unsigned int key_code)
 {
   return glfwGetKey(glfw_window, key_code) == GLFW_RELEASE;
 }

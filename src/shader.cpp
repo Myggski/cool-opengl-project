@@ -1,5 +1,6 @@
 #include "shader.h"
 #include <stdio.h>
+#include <iostream>
 #include "string"
 #include <fstream>
 #include <sstream>
@@ -30,12 +31,21 @@ GLuint load_shader(const char *path, GLenum type)
 {
   std::string shader_source = read_shader_file(path);
 
-  printf(shader_source.c_str());
-
   const char *shader_source_ptr = shader_source.c_str();
   GLuint shader = glCreateShader(type);
   glShaderSource(shader, 1, &shader_source_ptr, NULL);
   glCompileShader(shader);
+
+  int success;
+  char infoLog[512];
+  glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+
+  if (!success)
+  {
+    glGetShaderInfoLog(shader, 512, NULL, infoLog);
+    std::cout << "ERROR::SHADER::COMPILATION_FAILED\n"
+              << infoLog << std::endl;
+  };
 
   return shader;
 }
@@ -49,6 +59,10 @@ GLuint load_shader_program(const char *vert_path, const char *frag_path)
   glAttachShader(program, vertex_shader);
   glAttachShader(program, fragment_shader);
   glLinkProgram(program);
+
+  static char BUFFER[1024];
+  glGetProgramInfoLog(program, 1024, NULL, BUFFER);
+  std::printf(BUFFER);
 
   return program;
 }

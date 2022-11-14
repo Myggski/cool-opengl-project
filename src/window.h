@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "window_data.h"
 #include "window_props.h"
@@ -19,13 +20,13 @@ public:
   void on_update();
   void set_v_sync(bool enabled);
   bool is_v_sync() const;
-  bool is_key_pressed(uint16_t key_code);
-  bool is_key_released(uint16_t key_code);
+  bool is_key_pressed(unsigned int key_code);
+  bool is_key_released(unsigned int key_code);
   inline bool is_window_open() const { return !glfwWindowShouldClose(glfw_window); }
   inline uint32_t get_width() const { return data.width; }
   inline uint32_t get_height() const { return data.height; }
   float get_aspect_ratio();
-  static window* create(const window_props& props = window_props());
+  static window *create(const window_props &props = window_props());
 
 private:
   void init(const window_props &props);

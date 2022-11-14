@@ -1,5 +1,6 @@
 #include "vertex_buffer.h"
 #include <GL/glew.h>
+#include <cstdio>
 
 vertex_buffer::vertex_buffer(const void *data, unsigned int size)
 {

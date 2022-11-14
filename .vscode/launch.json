@@ -9,7 +9,7 @@
       "program": "${workspaceFolder}\\build\\Debug\\cool-opengl.exe",
       "console": "newExternalWindow",
       "logging": {
-        "moduleLoad": false,
+        "moduleLoad": true,
         "trace": true
       },
       "windows": {
