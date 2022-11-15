@@ -1,4 +1,5 @@
 #include "window.h"
+#include <cstdio>
 
 static bool _GLWF_initialized{false};
 
@@ -112,12 +113,12 @@ void window_resize_callback(GLFWwindow *window, int width, int height)
 void mouse_position_callback(GLFWwindow *window, double position_x, double position_y)
 {
   window_data *glfw_data = (window_data *)glfwGetWindowUserPointer(window);
-  glfw_data->mouse_x = position_x;
-  glfw_data->mouse_y = position_y;
+  glfw_data->mouse_position.x = position_x;
+  glfw_data->mouse_position.y = position_y;
 
-  glfw_data->delta_mouse_x = position_x - glfw_data->last_mouse_x;
-  glfw_data->delta_mouse_y = glfw_data->last_mouse_y - position_y;
+  glfw_data->delta_mouse_position.x = position_x - glfw_data->last_mouse_position.x;
+  glfw_data->delta_mouse_position.y = glfw_data->last_mouse_position.y - position_y;
 
-  glfw_data->last_mouse_x = position_x;
-  glfw_data->last_mouse_y = position_y;
+  glfw_data->last_mouse_position.x = position_x;
+  glfw_data->last_mouse_position.y = position_y;
 }

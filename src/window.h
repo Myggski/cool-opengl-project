@@ -3,6 +3,7 @@
 #include <string>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "glm/glm.hpp"
 #include "window_data.h"
 #include "window_props.h"
 
@@ -25,6 +26,8 @@ public:
   inline bool is_window_open() const { return !glfwWindowShouldClose(glfw_window); }
   inline uint32_t get_width() const { return data.width; }
   inline uint32_t get_height() const { return data.height; }
+  inline glm::vec2 get_mouse_delta() const { return data.delta_mouse_position; }
+  inline GLFWwindow *get_window() const { return glfw_window; }
   float get_aspect_ratio();
   static window *create(const window_props &props = window_props());
 

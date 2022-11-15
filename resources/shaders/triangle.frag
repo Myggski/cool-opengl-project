@@ -14,8 +14,8 @@ uniform vec4 u_Color;
 
 void main()
 {
-    o_Color = vec4(1.0, 0.0, 0.0, 1.0);
+    //o_Color = vec4(f_Normal.x, f_Normal.y, f_Normal.z, 1.0);
     //o_Color = vec4(f_Normal, 1.0);
-    //vec4 col_a = texture(u_Texure0, f_TexCoord);
+    o_Color = texture(u_Texure0, f_TexCoord);
     //o_Color = mix(col_a, u_Color, sin(u_Time + f_Position.x + f_Position.y ) * 0.5 + 0.5) * u_Color;
 }

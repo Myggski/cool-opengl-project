@@ -12,19 +12,24 @@ camera::camera(float aspect_ratio, float fov_y) : position(glm::vec3(0.0F)),
 
 void camera::rotate(glm::vec2 mouse_delta)
 {
-  glm::vec3 forward(0.0F);
-  yaw += mouse_delta.x;
-  pitch -= mouse_delta.y;
+  if (mouse_delta.length() < 0.1f)
+  {
+    return;
+  }
 
-  if (pitch > 89.0f)
-    pitch = 89.0f;
-  if (pitch < -89.0f)
-    pitch = -89.0f;
+  glm::vec3 new_forward(0.0F);
+  this->yaw += mouse_delta.x;
+  this->pitch += mouse_delta.y;
 
-  forward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-  forward.y = sin(glm::radians(pitch));
-  forward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-  forward = glm::normalize(forward);
+  if (this->pitch > 89.0f)
+    this->pitch = 89.0f;
+  if (this->pitch < -89.0f)
+    this->pitch = -89.0f;
+
+  new_forward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+  new_forward.y = sin(glm::radians(pitch));
+  new_forward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+  this->forward = glm::normalize(new_forward);
 }
 
 void camera::zoom(float delta)

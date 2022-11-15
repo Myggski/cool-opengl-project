@@ -1,6 +1,5 @@
 #include "vertex_array.h"
 #include <GL/glew.h>
-#include <cstdio>
 
 vertex_array::vertex_array()
 {

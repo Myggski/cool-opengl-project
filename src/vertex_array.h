@@ -25,6 +25,13 @@ public:
                vertex_buffer_layout const &layout);
   ~vertex_array();
 
+  vertex_array &operator=(vertex_array &&rhs) noexcept
+  {
+    std::swap(renderer_id, rhs.renderer_id);
+    count = rhs.count;
+    return *this;
+  }
+
   void add_buffer(vertex_buffer &vbo, const vertex_buffer_layout &layout);
   void bind() const;
   void unbind() const;
